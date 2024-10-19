@@ -32,16 +32,22 @@ class SimuladorPaginacion extends Thread {
 
             if (terminar) break; 
         }
+        double f= (double)fallas*100/referencias.size();
+        double h= (double)hits*100/referencias.size();
+
 
         System.out.println("Número de hits: " + hits);
         System.out.println("Número de fallas de página: " + fallas);
+        System.out.println("Porcentaje de hits: " + h);
+        System.out.println("Porcentaje de fallas de página: " + f);
         System.out.println("Tiempo total para hits: " + tiempoHits + " ns");
         System.out.println("Tiempo total para fallas: " + tiempoFallas + " ns");
         System.out.println("Tiempo total si fueran solo hits: " + hits*25 + " ns");
         System.out.println("Tiempo total solo fallas: " + fallas*10000000+ " ns");
     }
     private void accesoMemoria(int numeroPagina, boolean esEscritura) {
-        synchronized (lock) {
+        synchronized (tablaPaginas) {
+            
             Pagina pagina = tablaPaginas.get(numeroPagina);
 
             if (pagina != null && marcos.contains(pagina)) {
