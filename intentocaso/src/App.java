@@ -4,10 +4,9 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
-        SimuladorMemoria simuladorMemoria = new SimuladorMemoria();  // Crear instancia del simulador de memoria
+        SimuladorMemoria simuladorMemoria = new SimuladorMemoria(); 
 
         while (!salir) {
-            // Mostrar el menú
             System.out.println("---- Menú ----");
             System.out.println("1. Obtener referencia");
             System.out.println("2. Simular paginación");

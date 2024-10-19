@@ -33,7 +33,7 @@ public class GenerarReferencia {
             writer.write("NR=" + numReferencias + "\n");
             numPaginas = (int) ((int) Math.ceil((double)((filas * columnas * 3) / (double)tamanio)) + Math.ceil((double)(imagen.leerLongitud() / (double)tamanio)));
             writer.write("NP=" + numPaginas+ "\n");
-            int contadorBytes = 0;
+            int desplazamiento = 0;
             boolean salir = false;
             int pagina = 0;
             int fil = 0;
@@ -43,11 +43,11 @@ public class GenerarReferencia {
                 for (int a = 0; a < columnas; a++) {
                     if (salir) break;
                     for (String color : rgb) {
-                        writer.write("Imagen[" + i + "][" + a + "]." + color + "," + pagina + "," + contadorBytes + ",R\n");
-                        contadorBytes++;
+                        writer.write("Imagen[" + i + "][" + a + "]." + color + "," + pagina + "," + desplazamiento + ",R\n");
+                        desplazamiento++;
                         fil = i;
                         colu = a;
-                        if (contadorBytes == 16) {
+                        if (desplazamiento == 16) {
                             salir = true;
                             break;
                         }
@@ -85,17 +85,17 @@ public class GenerarReferencia {
                         if (mensaje == longitud) {
                             break;
                         }
-                        if (contadorBytes == tamanio) {
-                            contadorBytes = 0;
+                        if (desplazamiento == tamanio) {
+                            desplazamiento = 0;
                             pagIm++;
                         }
                         if (numBits == 0) {
                             writer.write("Mensaje[" + mensaje + "]," + comienzoPag + "," + pagina + ",W\n");
                         }
-                        writer.write("Imagen[" + i + "][" + a + "]." + color + "," + pagIm + "," + contadorBytes + ",R\n");
+                        writer.write("Imagen[" + i + "][" + a + "]." + color + "," + pagIm + "," + desplazamiento + ",R\n");
                         writer.write("Mensaje[" + mensaje + "]," + comienzoPag + "," + pagina + ",W\n");
                         numBits++;
-                        contadorBytes++;
+                        desplazamiento++;
                     }
                     if (mensaje == longitud) {
                         break;

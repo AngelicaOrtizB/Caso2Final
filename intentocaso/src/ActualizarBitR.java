@@ -4,7 +4,6 @@ import java.util.*;
 class ActualizarBitR extends Thread {
     private Map<Integer, Pagina> tablaPaginas;
     private boolean terminar = false;
-    private Object lock;
 
     public ActualizarBitR(Map<Integer, Pagina> tablaPaginas) {
         this.tablaPaginas = tablaPaginas;
