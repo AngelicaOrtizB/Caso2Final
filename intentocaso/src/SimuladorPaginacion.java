@@ -28,7 +28,7 @@ class SimuladorPaginacion extends Thread {
             int pagina = ref.paginaVirtual;
             boolean esEscritura = ref.accion.equals("W");
 
-            procesarAcceso(pagina, esEscritura);
+            accesoMemoria(pagina, esEscritura);
 
             if (terminar) break; 
         }
@@ -40,7 +40,7 @@ class SimuladorPaginacion extends Thread {
         System.out.println("Tiempo total si fueran solo hits: " + hits*25 + " ns");
         System.out.println("Tiempo total solo fallas: " + fallas*10000000+ " ns");
     }
-    private void procesarAcceso(int numeroPagina, boolean esEscritura) {
+    private void accesoMemoria(int numeroPagina, boolean esEscritura) {
         synchronized (lock) {
             Pagina pagina = tablaPaginas.get(numeroPagina);
 

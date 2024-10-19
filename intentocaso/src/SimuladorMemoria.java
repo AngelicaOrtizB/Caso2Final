@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-
 public class SimuladorMemoria {
 
     public void iniciarSimulacion(int numMarcos, String archivoReferencias) {
@@ -42,7 +41,6 @@ public class SimuladorMemoria {
                     System.out.println("Cantidad de paginas:"+ pag);
 
                 }
-
                 if (linea.startsWith("Imagen") || linea.startsWith("Mensaje")) {
                     String[] partes = linea.split(",");
                     String objeto = partes[0];
