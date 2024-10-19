@@ -3,27 +3,24 @@ import java.util.*;
 
 class SimuladorPaginacion extends Thread {
     private int numMarcos;
-    private List<Referencia> referencias;  // Lista de referencias leídas
-    private List<Pagina> marcos;  // Los marcos de página en memoria (frames)
-    private Map<Integer, Pagina> tablaPaginas;  // Tabla de páginas
+    private List<Referencia> referencias;  
+    private List<Pagina> marcos;  
+    private Map<Integer, Pagina> tablaPaginas;  
     private int hits = 0;
     private int fallas = 0;
     private long tiempoHits = 0;
     private long tiempoFallas = 0;
     private boolean terminar = false;
-    private Object lock;  // Sincronización
 
-    public SimuladorPaginacion(int numMarcos, List<Referencia> referencias, Object lock) {
+    public SimuladorPaginacion(int numMarcos, List<Referencia> referencias) {
         this.numMarcos = numMarcos;
         this.referencias = referencias;
-        this.marcos = new ArrayList<>(numMarcos);  // Los marcos físicos
+        this.marcos = new ArrayList<>(numMarcos);  
         this.tablaPaginas = new HashMap<>();
-        this.lock = lock;
     }
 
     @Override
     public void run() {
-        // Procesar las referencias una por una
         for (Referencia ref : referencias) {
             int pagina = ref.paginaVirtual;
             boolean esEscritura = ref.accion.equals("W");

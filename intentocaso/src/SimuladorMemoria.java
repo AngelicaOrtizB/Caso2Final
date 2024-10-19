@@ -5,10 +5,8 @@ public class SimuladorMemoria {
     public void iniciarSimulacion(int numMarcos, String archivoReferencias) {
         List<Referencia> referencias = leerReferencias(archivoReferencias);
 
-        Object lock = new Object();
-
-        SimuladorPaginacion simulador = new SimuladorPaginacion(numMarcos, referencias, lock);
-        ActualizarBitR actualizadorR = new ActualizarBitR(simulador.getTablaPaginas(), lock);
+        SimuladorPaginacion simulador = new SimuladorPaginacion(numMarcos, referencias);
+        ActualizarBitR actualizadorR = new ActualizarBitR(simulador.getTablaPaginas());
 
         simulador.start();
         actualizadorR.start();

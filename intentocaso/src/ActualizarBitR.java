@@ -6,9 +6,8 @@ class ActualizarBitR extends Thread {
     private boolean terminar = false;
     private Object lock;
 
-    public ActualizarBitR(Map<Integer, Pagina> tablaPaginas, Object lock) {
+    public ActualizarBitR(Map<Integer, Pagina> tablaPaginas) {
         this.tablaPaginas = tablaPaginas;
-        this.lock = lock;
     }
 
     @Override
@@ -20,7 +19,7 @@ class ActualizarBitR extends Thread {
                 e.printStackTrace();
             }
 
-            synchronized (lock) {
+            synchronized (tablaPaginas) {
                 for (Pagina pagina : tablaPaginas.values()) {
                     pagina.resetR();
                 }
