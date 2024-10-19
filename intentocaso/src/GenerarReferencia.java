@@ -30,7 +30,6 @@ public class GenerarReferencia {
             writer.write("NF=" + filas + "\n");
             writer.write("NC=" + columnas + "\n");
             numReferencias = 17 * imagen.leerLongitud() + 16;
-            System.out.println(imagen.leerLongitud());
             writer.write("NR=" + numReferencias + "\n");
             numPaginas = (int) ((int) Math.ceil((double)((filas * columnas * 3) / (double)tamanio)) + Math.ceil((double)(imagen.leerLongitud() / (double)tamanio)));
             writer.write("NP=" + numPaginas+ "\n");
